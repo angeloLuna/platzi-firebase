@@ -1,62 +1,26 @@
+var ref = firebase.database().ref('usuario');
+
 var btnLogin = document.getElementById("btnLogin");
 var btnLogout = document.getElementById("btnLogout");
-var refTest = firebase.database().ref('test');
-var ref = firebase.database().ref('usuario');
+
+var perfilNombre = document.getElementById("perfilNombre");
+var perfilEmail = document.getElementById("perfilEmail");
+
 var usuario = {}
 
-var btnPush = document.getElementById("btnPush");
-var btnUpdate = document.getElementById("btnUpdate");
-var btnSet = document.getElementById("btnSet");
-var btnRemove = document.getElementById("btnRemove");
-
-
-btnRemove.addEventListener("click", function(){
-  console.log("remove");
-  // Poner un uid valido para este método
-  refTest.child("jjsTf12jayis3yaod0kas").remove()
-})
-
-btnSet.addEventListener("click", function(){
-  var obj = {
-    lugarPlatziconf: "ciudad de México"
-  }
-  refTest.set(obj).then(function(){
-    alert("set")
-  }).catch(function(err){
-    console.log(err)
-    alert("falló el set")
+function leerInformacion(){
+  // debemos cambiar el uid por uno válido 
+  ref.child("0Z6jPxp55raG0y9ruAVYQbm7NHp2").on("value", function(data){
+    console.log(data.val())
+    llenarInformacion(data.val().nombre, data.val().email)
   })
-})
+}
 
-btnPush.addEventListener("click", function(){
-  var obj = {
-    curso: "firebase",
-    profesor: "angel",
-    contenidos: {
-      primero: "autenticación"
-    }
-  }
-  refTest.push(obj).then(function(){
-    alert("se subió correctamente la información")
-  }).catch(function(err){
-    console.log(err);
-    console.log("hubo un error");
-  })
-})
-
-btnUpdate.addEventListener("click", function(){
-  var obj = {
-    curso: "desarrollo web",
-    profesor: "Leonidas",
-    contenidos: {
-      primero: "formularios"
-    }
-  }
-  // Debemos cambiar el child por un nodo existente en la base de datos
-  refTest.child("LDI0yfcpqsju284DIE").update(obj)
-})
-
-
+function llenarInformacion(nombre, email){
+  perfilNombre.innerHTML = nombre;
+  perfilEmail.innerHTML = email
+}
+leerInformacion()
 
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -65,29 +29,12 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("tenemos usuario");
     mostrarLogout()
   }else{
+    window.location.href = "index.html"
     console.log("no tenemos usuario");
     mostrarLogin()
   }
 });
 
-
-btnLogin.addEventListener("click", function(){
-  event.preventDefault();
-  var provider = new firebase.auth.FacebookAuthProvider();
-  provider.addScope('public_profile');
-  
-  firebase.auth().signInWithPopup(provider).then(function(datosUsuario){
-    console.log(datosUsuario);
-    usuario = {
-      nombre: datosUsuario.user.displayName,
-      email: datosUsuario.user.email,
-      uid: datosUsuario.user.uid
-    }
-    agregarUsuario(usuario, usuario.uid)
-  }).catch(function(err){
-    console.log(err);
-  })
-});
 
 btnLogout.addEventListener("click", function(){
   firebase.auth().signOut();
@@ -105,6 +52,3 @@ function mostrarLogin(){
   btnLogin.style.display = "block";
 }
 
-function agregarUsuario(usuario, uid){
-  ref.child(uid).update(usuario)
-}

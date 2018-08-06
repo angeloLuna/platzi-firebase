@@ -1,5 +1,6 @@
 var btnLogin = document.getElementById("btnLogin");
 var btnLogout = document.getElementById("btnLogout");
+var ref = firebase.database().ref('usuario');
 var usuario = {}
 
 
@@ -27,7 +28,7 @@ btnLogin.addEventListener("click", function(){
       email: datosUsuario.user.email,
       uid: datosUsuario.user.uid
     }
-    agregarUsuario()
+    agregarUsuario(usuario, usuario.uid)
   }).catch(function(err){
     console.log(err);
   })
@@ -47,4 +48,8 @@ function mostrarLogin(){
   console.log("mostrar login");
   btnLogout.style.display = "none";
   btnLogin.style.display = "block";
+}
+
+function agregarUsuario(usuario, uid){
+  ref.child(uid).update(usuario)
 }
