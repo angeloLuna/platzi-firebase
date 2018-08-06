@@ -7,6 +7,26 @@ var usuario = {}
 var btnPush = document.getElementById("btnPush");
 var btnUpdate = document.getElementById("btnUpdate");
 var btnSet = document.getElementById("btnSet");
+var btnRemove = document.getElementById("btnRemove");
+
+
+btnRemove.addEventListener("click", function(){
+  console.log("remove");
+  // Poner un uid valido para este método
+  refTest.child("jjsTf12jayis3yaod0kas").remove()
+})
+
+btnSet.addEventListener("click", function(){
+  var obj = {
+    lugarPlatziconf: "ciudad de México"
+  }
+  refTest.set(obj).then(function(){
+    alert("set")
+  }).catch(function(err){
+    console.log(err)
+    alert("falló el set")
+  })
+})
 
 btnPush.addEventListener("click", function(){
   var obj = {
@@ -63,7 +83,7 @@ btnLogin.addEventListener("click", function(){
       email: datosUsuario.user.email,
       uid: datosUsuario.user.uid
     }
-    agregarUsuario()
+    agregarUsuario(usuario, usuario.uid)
   }).catch(function(err){
     console.log(err);
   })
@@ -85,6 +105,6 @@ function mostrarLogin(){
   btnLogin.style.display = "block";
 }
 
-function agregarUsuario(){
-  ref.push(usuario)
+function agregarUsuario(usuario, uid){
+  ref.child(uid).update(usuario)
 }
