@@ -1,11 +1,14 @@
 var btnLogin = document.getElementById("btnLogin");
+var btnLogout = document.getElementById("btnLogout");
 
 firebase.auth().onAuthStateChanged(function(user){
   console.log(user)
   if (user) {
     console.log("tenemos usuario");
+    mostrarLogout()
   }else{
     console.log("no tenemos usuario");
+    mostrarLogin()
   }
 });
 
@@ -22,3 +25,19 @@ btnLogin.addEventListener("click", function(){
     console.log(err);
   })
 });
+
+btnLogout.addEventListener("click", function(){
+  firebase.auth().signOut();
+})
+
+function mostrarLogout(){
+  console.log("mostrar Logout");
+  btnLogout.style.display = "block";
+  btnLogin.style.display = "none";
+}
+
+function mostrarLogin(){
+  console.log("mostrar login");
+  btnLogout.style.display = "none";
+  btnLogin.style.display = "block";
+}

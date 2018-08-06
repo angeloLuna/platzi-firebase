@@ -23,6 +23,9 @@
             <li>
               <a href="#" id="btnLogin">Iniciar sesión</a>
             </li>
+            <li>
+              <a href="#" id="btnLogout" style="display: none">cerrar sesión</a>
+            </li>
           </ul>
         </nav>
       </header>
@@ -117,16 +120,18 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-auth.js"></script>
     <!-- Sustituye tu script de firebase -->
-    
-
-
-
-
-
-
-
-
-    
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDtuGHiCHNQIucrTJZV3caGp2IFWB5tbXQ",
+        authDomain: "platzi-invie-6c81e.firebaseapp.com",
+        databaseURL: "https://platzi-invie-6c81e.firebaseio.com",
+        projectId: "platzi-invie-6c81e",
+        storageBucket: "platzi-invie-6c81e.appspot.com",
+        messagingSenderId: "101864483761"
+      };
+      firebase.initializeApp(config);
+    </script>
     <!-- Aquí termina el script de firebase -->
     
     <script src="js/index.js"></script>
