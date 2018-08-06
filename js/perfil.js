@@ -1,7 +1,42 @@
 var btnLogin = document.getElementById("btnLogin");
 var btnLogout = document.getElementById("btnLogout");
-var ref = firebase.database().ref().child("usuario");
+var refTest = firebase.database().ref('test');
+var ref = firebase.database().ref('usuario');
 var usuario = {}
+
+var btnPush = document.getElementById("btnPush");
+var btnUpdate = document.getElementById("btnUpdate");
+var btnSet = document.getElementById("btnSet");
+
+btnPush.addEventListener("click", function(){
+  var obj = {
+    curso: "firebase",
+    profesor: "angel",
+    contenidos: {
+      primero: "autenticación"
+    }
+  }
+  refTest.push(obj).then(function(){
+    alert("se subió correctamente la información")
+  }).catch(function(err){
+    console.log(err);
+    console.log("hubo un error");
+  })
+})
+
+btnUpdate.addEventListener("click", function(){
+  var obj = {
+    curso: "desarrollo web",
+    profesor: "Leonidas",
+    contenidos: {
+      primero: "formularios"
+    }
+  }
+  // Debemos cambiar el child por un nodo existente en la base de datos
+  refTest.child("LDI0yfcpqsju284DIE").update(obj)
+})
+
+
 
 
 firebase.auth().onAuthStateChanged(function(user){
