@@ -14,11 +14,10 @@ firebase.auth().onAuthStateChanged(function(user){
 
 
 btnLogin.addEventListener("click", function(){
-  //event.preventDefault();
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  //defino en que leguaje le va a salir el Popup de autenticacion
-  firebase.auth().languageCode = 'es';
+  event.preventDefault();
+  var provider = new firebase.auth.FacebookAuthProvider();
+  provider.addScope('public_profile');
+  
   firebase.auth().signInWithPopup(provider).then(function(datosUsuario){
     console.log(datosUsuario);
   }).catch(function(err){
