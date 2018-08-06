@@ -1,5 +1,6 @@
 var btnLogin = document.getElementById("btnLogin");
 var btnLogout = document.getElementById("btnLogout");
+var ref = firebase.database().ref().child("usuario");
 var usuario = {}
 
 
@@ -47,4 +48,8 @@ function mostrarLogin(){
   console.log("mostrar login");
   btnLogout.style.display = "none";
   btnLogin.style.display = "block";
+}
+
+function agregarUsuario(){
+  ref.push(usuario)
 }

@@ -20,8 +20,12 @@
               <a href="index.html">Home</a>
             </li>
             <li>
-              <a href="" id="logout">Cerrar sesión</a>
+              <a href="#" id="btnLogin">Iniciar sesión</a>
             </li>
+            <li>
+              <a href="#" id="btnLogout" style="display: none">Cerrar sesión</a>
+            </li>
+
           </ul>
         </nav>
       </div>
@@ -126,16 +130,18 @@
       </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.5.4/blazy.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-database.js"></script>
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyCVp-WOuN1Aa_mfpszBdXyUKIXAOcUv9qM",
-        authDomain: "platzi-935dd.firebaseapp.com",
-        databaseURL: "https://platzi-935dd.firebaseio.com",
-        projectId: "platzi-935dd",
-        storageBucket: "platzi-935dd.appspot.com",
-        messagingSenderId: "696101076636"
+        apiKey: "AIzaSyDtuGHiCHNQIucrTJZV3caGp2IFWB5tbXQ",
+        authDomain: "platzi-invie-6c81e.firebaseapp.com",
+        databaseURL: "https://platzi-invie-6c81e.firebaseio.com",
+        projectId: "platzi-invie-6c81e",
+        storageBucket: "platzi-invie-6c81e.appspot.com",
+        messagingSenderId: "101864483761"
       };
       firebase.initializeApp(config);
     </script>
