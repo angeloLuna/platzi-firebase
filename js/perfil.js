@@ -75,7 +75,36 @@ cancelForm.addEventListener("click", function(){
 
 function editarDatos(){
   event.preventDefault()
+  var uid =firebase.auth().currentUser.uid
   console.log("editar datos")
+  var obj = {
+    nombre: nombreForm.value,
+    email: emailForm.value,
+    telefono: telefonoForm.value,
+    direccion:{
+      calle: calleForm.value,
+      interior: interiorForm.value,
+      colonia: coloniaForm.value,
+      cp: cpForm.value
+    }
+  }
+  ref.child(uid).update(obj)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
