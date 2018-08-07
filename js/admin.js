@@ -23,7 +23,8 @@ function nuevaGuitarra(){
     nombre: nombre.value,
     descripcion: descripcion.value,
     tipo: tipo.value,
-    precio: precio.value
+    precio: precio.value,
+    imgaen: imagen.value
   }
   console.log(obj)
 
