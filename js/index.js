@@ -1,6 +1,7 @@
 var btnLogin = document.getElementById("btnLogin");
 var btnLogout = document.getElementById("btnLogout");
 var ref = firebase.database().ref('usuario');
+var refGuitarras = firebase.database().ref("guitarras")
 var usuario = {}
 
 
@@ -18,8 +19,8 @@ firebase.auth().onAuthStateChanged(function(user){
 
 btnLogin.addEventListener("click", function(){
   event.preventDefault();
-  var provider = new firebase.auth.FacebookAuthProvider();
-  provider.addScope('public_profile');
+  var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   
   firebase.auth().signInWithPopup(provider).then(function(datosUsuario){
     console.log(datosUsuario);
@@ -53,3 +54,18 @@ function mostrarLogin(){
 function agregarUsuario(usuario, uid){
   ref.child(uid).update(usuario)
 }
+
+function leerGuitarras(){
+  refGuitarras.child("normal").on("value", function(guitarras){
+    console.log(guitarras.val())
+  })
+}
+
+function leerGuitarrasVip(){
+  refGuitarras.child("vip").on("value", function(guitarras){
+    console.log(guitarras.val())
+  })
+}
+
+leerGuitarras()
+leerGuitarrasVip()
