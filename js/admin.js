@@ -26,4 +26,18 @@ function nuevaGuitarra(){
     precio: precio.value
   }
   console.log(obj)
+
+  if (obj.tipo == "normal") {
+    subirGuitarra(obj, "normal")
+  }else if (obj.tipo == "vip") {
+    subirGuitarra(obj, "vip")
+  }else{
+    console.log("el tipo debe ser normal o vip")
+  }
+  
+}
+
+
+function subirGuitarra(guitarra, tipo){
+  refGuitarras.push(guitarra)
 }
