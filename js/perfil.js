@@ -7,6 +7,8 @@ var datosPerfil = document.getElementById("datosPerfil");
 var formularioPerfil = document.getElementById("formularioPerfil");
 var perfilNombre = document.getElementById("perfilNombre");
 var perfilEmail = document.getElementById("perfilEmail");
+var perfilTelefono = document.getElementById("perfilTelefono");
+var perfilDireccion = document.getElementById("perfilDireccion");
 
 var cancelForm = document.getElementById("cancelForm");
 var nombreForm = document.getElementById("nombreForm");
@@ -22,14 +24,17 @@ var usuario = {}
 
 function leerInformacion(uid){
   ref.child(uid).on("value", function(data){
-    console.log(data.val())
-    llenarInformacion(data.val().nombre, data.val().email)
+    var dat = data.val()
+    llenarInformacion(dat.nombre, dat.email, dat.telefono, dat.direccion)
   })
 }
 
-function llenarInformacion(nombre, email){
+function llenarInformacion(nombre, email, telefono, direccion){
   perfilNombre.innerHTML = nombre;
-  perfilEmail.innerHTML = email
+  perfilEmail.innerHTML = email;
+  perfilTelefono.innerHTML = telefono;
+  perfilDireccion.innerHTML = direccion.calle + ", " + direccion.interior + ", " +direccion.colonia + " " +direccion.cp;
+
 }
 
 
